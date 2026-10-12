@@ -1,0 +1,19 @@
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  -- Verifica que la PK compuesta (campaign_id, metric_date) de stg_marketing_campaigns__campaign_daily_metrics sea unica.
+-- El test PASA si esta consulta no devuelve filas.
+select campaign_id, metric_date, count(*) as n
+from OLIST_SYNTHETIC_V2.silver.stg_marketing_campaigns__campaign_daily_metrics
+group by campaign_id, metric_date
+having count(*) > 1
+  
+  
+      
+    ) dbt_internal_test

@@ -1,0 +1,29 @@
+
+  create or replace   view OLIST_SYNTHETIC_V2.silver.stg_customer_service__service_satisfaction
+  
+  
+  
+  
+  as (
+    
+
+
+with source as (
+    select * from OLIST_SYNTHETIC_V2.CUSTOMER_SERVICE.service_satisfaction
+),
+
+renamed as (
+    select
+        trim("SURVEY_ID")::varchar as survey_id,
+        trim("TICKET_ID")::varchar as ticket_id,
+        "SURVEY_DATE"::timestamp_ntz as survey_date,
+        "SATISFACTION_SCORE"::float as satisfaction_score,
+        "RECOMMENDATION_SCORE"::float as recommendation_score,
+        trim("COMMENT_TEXT")::varchar as comment_text
+    from source
+)
+
+select * from renamed
+qualify row_number() over (partition by survey_id order by survey_id) = 1
+  );
+

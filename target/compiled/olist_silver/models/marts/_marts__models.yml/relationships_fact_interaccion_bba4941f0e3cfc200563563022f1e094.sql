@@ -1,0 +1,25 @@
+
+    
+    
+
+with child as (
+    select agent_key as from_field
+    from OLIST_SYNTHETIC_V2.gold.fact_interacciones_atencion
+    where agent_key is not null
+),
+
+parent as (
+    select agent_key as to_field
+    from OLIST_SYNTHETIC_V2.gold.dim_agent
+)
+
+select
+    from_field
+
+from child
+left join parent
+    on child.from_field = parent.to_field
+
+where parent.to_field is null
+
+

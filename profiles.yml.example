@@ -1,0 +1,31 @@
+# ============================================================
+# profiles.yml — plantilla de conexion dbt -> Snowflake
+# ============================================================
+# Este archivo NO va dentro de la carpeta del proyecto dbt.
+# Debe copiarse a:
+#   Windows : %USERPROFILE%\.dbt\profiles.yml
+#   macOS/Linux: ~/.dbt/profiles.yml
+#
+# Usa las MISMAS credenciales que ya configuraste para SnowSQL en
+# ~/.snowsql/config (accountname, username, password, warehouse, role).
+
+olist_silver:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: <tu_account_locator>        # ej. AB12345.us-east-1
+
+      user: <tu_usuario>
+      password: <tu_password>
+      role: SYSADMIN
+      warehouse: COMPUTE_WH
+
+      # Base de datos y schema por defecto. Los modelos de staging
+      # sobreescriben el schema a "silver" via dbt_project.yml
+      # (+schema: silver), asi que esto es solo el valor por defecto.
+      database: OLIST_SYNTHETIC_V2
+      schema: PUBLIC
+
+      threads: 4
+      client_session_keep_alive: False
