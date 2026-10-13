@@ -1,0 +1,5 @@
+# Añadir al final del .gitignore del repositorio (si no tienes uno, crea el archivo con este contenido)
+.env
+airflow_settings.yaml
+.astro/
+logs/
