@@ -19,3 +19,8 @@ jobs:
         uses: astronomer/deploy-action@v0.14.0
         with:
           deployment-id: cmv72ohnt02z001k20a56b46c
+
+.env
+airflow_settings.yaml
+.astro/
+logs/
