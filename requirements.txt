@@ -1,0 +1,2 @@
+# Proveedor de Airflow para dbt Cloud (el resto ya viene incluido en Astro Runtime)
+apache-airflow-providers-dbt-cloud
